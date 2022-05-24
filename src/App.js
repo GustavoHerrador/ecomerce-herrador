@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import CustomNavbar from "./components/customNavBar";
 
 function App() {
-  return <h1>Mi App.</h1>;
+  return <CustomNavbar />;
 }
-
 export default App;

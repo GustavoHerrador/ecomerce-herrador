@@ -1,0 +1,14 @@
+.bg-blue{
+  background-color: blue;
+}
+
+.logo{
+  max-width: 25px;
+  max-height:25px;
+}
+
+.content{
+  margin-top: 40px;
+padding: 12px;
+height: 3000px;
+}
