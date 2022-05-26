@@ -1,14 +1,26 @@
-.bg-blue{
+.bg-blue {
   background-color: blue;
+  padding: 0px;
 }
 
-.logo{
-  max-width: 25px;
-  max-height:25px;
+.logo {
+  height: 40px;
+  padding: 0px;
 }
 
-.content{
+.content {
   margin-top: 40px;
-padding: 12px;
-height: 3000px;
+  padding: 12px;
+  height: 3000px;
+}
+
+.navbar {
+  padding: 0px;
+  width: 100%;
+}
+.nav {
+  padding: 0px;
+}
+.brand {
+  padding: 0px;
 }

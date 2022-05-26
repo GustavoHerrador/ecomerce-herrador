@@ -1,0 +1,7 @@
+.saludo {
+  font-family: Inconsolata, monospace;
+  margin-top: 40px;
+  color: blue;
+  text-align: center;
+  text-decoration: underline blue 2px;
+}

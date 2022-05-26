@@ -1,0 +1,21 @@
+.carrito {
+  height: 40px;
+  width: 40px;
+  margin-left: 800px;
+  color: rgb(244, 244, 244);
+}
+
+.cartnumber {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  margin-top: 15px;
+  background: rgb(244, 244, 244);
+  border: 2px solid blue;
+  color: blue;
+  text-align: center;
+  justify-content: center;
+
+  font: 15px Arial, sans-serif;
+}
