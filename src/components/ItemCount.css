@@ -10,6 +10,9 @@
 }
 
 .remove {
+  display: flex;
+  align-items: right;
+  margin-top: 10px;
   background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
   background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
   background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);

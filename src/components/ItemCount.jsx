@@ -7,15 +7,15 @@ function ItemCount({ stock, onAdd, nombreProducto }) {
   const [stockCount, setStockCount] = useState(stock);
   return (
     <div className="item">
-      <h1>
+      <h2>
         {nombreProducto}:{initial}
-      </h1>
+      </h2>{" "}
       <button
         className="plus"
         disabled={disableButton}
         onClick={() => {
           setInitial(initial + 1);
-          if (stockCount === 0) {
+          if (stockCount == 0) {
             setDisableButton(true);
           } else {
             setStockCount(stockCount - 1);
@@ -24,7 +24,10 @@ function ItemCount({ stock, onAdd, nombreProducto }) {
       >
         Agregar
       </button>
-      <button className="remove" onClick={() => setInitial(initial - 1)}>
+      <button
+        className="remove"
+        onClick={() => setInitial(initial - 1, setDisableButton(false))}
+      >
         Quitar{" "}
       </button>
       <br />
