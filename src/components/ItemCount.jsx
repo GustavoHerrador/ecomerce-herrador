@@ -1,21 +1,11 @@
 import { useState, useEffect } from "react";
 import "./ItemCount.css";
 
-function ItemCount({ stock, nombreProducto, initial }) {
+function ItemCount({ stock, nombreProducto, initial, onAdd }) {
   const [productQuantity, setProductQuantity] = useState(initial);
   const [disableAddButton, setDisableAddButton] = useState(false);
   const [disableRemoveButton, setDisableRemoveButton] = useState(false);
-  const onAdd = () => {
-    if (productQuantity == 0) {
-      alert("Cargue al menos un producto");
-      return;
-    } else if (productQuantity > stock) {
-      alert("No hay stock suficiente");
-      return;
-    } else {
-      alert(`Se agregaron ${productQuantity} ${nombreProducto}(s)`);
-    }
-  };
+
   useEffect(() => {
     if (productQuantity >= stock) {
       setDisableAddButton(true);
@@ -54,7 +44,10 @@ function ItemCount({ stock, nombreProducto, initial }) {
         Quitar{" "}
       </button>
       <br />
-      <button className="add" onClick={() => onAdd()}>
+      <button
+        className="add"
+        onClick={() => onAdd(nombreProducto, productQuantity, stock)}
+      >
         Agregar al carrito
       </button>
     </div>
