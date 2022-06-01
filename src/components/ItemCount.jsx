@@ -1,37 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ItemCount.css";
 
-function ItemCount({ stock, onAdd, nombreProducto }) {
-  const [initial, setInitial] = useState(1);
-  const [disableButton, setDisableButton] = useState(false);
-  const [stockCount, setStockCount] = useState(stock);
+function ItemCount({ stock, nombreProducto, initial }) {
+  const [productQuantity, setProductQuantity] = useState(initial);
+  const [disableAddButton, setDisableAddButton] = useState(false);
+  const [disableRemoveButton, setDisableRemoveButton] = useState(false);
+  const onAdd = () => {
+    if (productQuantity == 0) {
+      alert("Cargue al menos un producto");
+      return;
+    } else if (productQuantity > stock) {
+      alert("No hay stock suficiente");
+      return;
+    } else {
+      alert(`Se agregaron ${productQuantity} ${nombreProducto}(s)`);
+    }
+  };
+  useEffect(() => {
+    if (productQuantity >= stock) {
+      setDisableAddButton(true);
+    } else {
+      setDisableAddButton(false);
+    }
+
+    if (productQuantity <= 0) {
+      setDisableRemoveButton(true);
+    } else {
+      setDisableRemoveButton(false);
+    }
+  }, [productQuantity, stock]);
+
   return (
     <div className="item">
       <h2>
-        {nombreProducto}:{initial}
+        {nombreProducto}:{productQuantity}
       </h2>{" "}
       <button
         className="plus"
-        disabled={disableButton}
+        disabled={disableAddButton}
         onClick={() => {
-          setInitial(initial + 1);
-          if (stockCount == 0) {
-            setDisableButton(true);
-          } else {
-            setStockCount(stockCount - 1);
-          }
+          setProductQuantity(productQuantity + 1);
         }}
       >
         Agregar
       </button>
       <button
         className="remove"
-        onClick={() => setInitial(initial - 1, setDisableButton(false))}
+        disabled={disableRemoveButton}
+        onClick={() => {
+          setProductQuantity(productQuantity - 1);
+        }}
       >
         Quitar{" "}
       </button>
       <br />
-      <button className="add" onClick={() => onAdd(initial)}>
+      <button className="add" onClick={() => onAdd()}>
         Agregar al carrito
       </button>
     </div>

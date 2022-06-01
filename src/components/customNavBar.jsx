@@ -12,7 +12,7 @@ function CustomNavBar() {
       <Navbar className="nav" bg="blue" variant="dark">
         <Navbar.Brand className="brand">
           <img src={logo} className="logo" />
-          <spam>Ecommerce-Herrador</spam>
+          <span>Ecommerce-Herrador</span>
         </Navbar.Brand>
         <Nav>
           <NavDropdown title="Productos">
