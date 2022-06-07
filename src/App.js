@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
-import ItemCount from "./components/ItemCount";
 import CustomNavbar from "./components/customNavBar";
+import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
     <>
       <CustomNavbar />
       <ItemListContainer saludo="Bienvenido a mi primer e-commerce" />
+      <ItemDetailContainer />
     </>
   );
 }
