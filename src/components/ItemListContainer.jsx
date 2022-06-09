@@ -2,9 +2,13 @@ import "./ItemListContainer.css";
 import ItemCount from "./ItemCount";
 import ItemList from "./ItemList";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ saludo }) => {
+  const { id } = useParams();
+
   const [items, setItems] = useState([]);
+
   useEffect(() => {
     const promiseItems = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -36,12 +40,22 @@ const ItemListContainer = ({ saludo }) => {
               "Chocolate realizado por nuestros mejores chocolateros.",
           },
         ]);
-      }, 2000);
+      }, 500);
     });
     promiseItems
-      .then((data) => setItems(data))
+      .then((data) => {
+        if (id) {
+          const filteredItems = data.filter(
+            (d) => d.nombreProducto.toLowerCase() === id.toLowerCase()
+          );
+
+          setItems(filteredItems);
+        } else {
+          setItems(data);
+        }
+      })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const onAdd = (nombreProducto, productQuantity, stock) => {
     if (productQuantity === 0) {
