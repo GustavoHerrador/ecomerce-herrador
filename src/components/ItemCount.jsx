@@ -49,11 +49,12 @@ function ItemCount({ stock, nombreProducto, initial, onAdd }) {
       {addCartButton ? (
         <button
           className="add"
-          onClick={() => {
+          onClick={(e) => {
             onAdd(nombreProducto, productQuantity, stock);
             setAddCartButton(false);
             if (productQuantity === 0) {
               setAddCartButton(true);
+              e.preventDefault();
             }
           }}
         >
