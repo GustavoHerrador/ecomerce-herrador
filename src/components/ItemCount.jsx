@@ -52,6 +52,9 @@ function ItemCount({ stock, nombreProducto, initial, onAdd }) {
           onClick={() => {
             onAdd(nombreProducto, productQuantity, stock);
             setAddCartButton(false);
+            if (productQuantity === 0) {
+              setAddCartButton(true);
+            }
           }}
         >
           Agregar al carrito
