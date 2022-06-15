@@ -64,8 +64,6 @@ const ItemListContainer = ({ saludo }) => {
     } else if (productQuantity > stock) {
       alert("No hay stock suficiente");
       return;
-    } else {
-      alert(`Se agregaron ${productQuantity} ${nombreProducto}(s)`);
     }
   };
 

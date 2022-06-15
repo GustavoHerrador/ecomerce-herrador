@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./ItemCount.css";
 
 function ItemCount({ stock, nombreProducto, initial, onAdd }) {
   const [productQuantity, setProductQuantity] = useState(initial);
   const [disableAddButton, setDisableAddButton] = useState(false);
   const [disableRemoveButton, setDisableRemoveButton] = useState(false);
+  const [addCartButton, setAddCartButton] = useState(true);
 
   useEffect(() => {
     if (productQuantity >= stock) {
@@ -44,12 +46,19 @@ function ItemCount({ stock, nombreProducto, initial, onAdd }) {
         Quitar{" "}
       </button>
       <br />
-      <button
-        className="add"
-        onClick={() => onAdd(nombreProducto, productQuantity, stock)}
-      >
-        Agregar al carrito
-      </button>
+      {addCartButton ? (
+        <button
+          className="add"
+          onClick={() => {
+            onAdd(nombreProducto, productQuantity, stock);
+            setAddCartButton(false);
+          }}
+        >
+          Agregar al carrito
+        </button>
+      ) : (
+        <Link to="/cart"> Finalizar la compra </Link>
+      )}
     </div>
   );
 }

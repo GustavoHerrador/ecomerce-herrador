@@ -6,7 +6,7 @@ function ItemDetailContainer() {
   const { id } = useParams();
   const [detail, setDetail] = useState([]);
   useEffect(() => {
-    const promiseDetail = new Promise((resolve, reject) => {
+    const promiseDetail = new Promise((resolve) => {
       setTimeout(() => {
         resolve([
           {
@@ -45,10 +45,8 @@ function ItemDetailContainer() {
     promiseDetail.then((itemDetail) => {
       console.log(id);
       if (id) {
-        const filteredDetail = itemDetail.filter((d) => d.id == id);
-        setDetail(filteredDetail);
-      } else {
-        setDetail(itemDetail);
+        const foundDetail = itemDetail.find((d) => d.id === parseInt(id));
+        setDetail(foundDetail);
       }
     });
     promiseDetail.catch((err) => console.log(err));
