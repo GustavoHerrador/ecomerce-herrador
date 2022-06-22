@@ -43,7 +43,6 @@ function ItemDetailContainer() {
       }, 500);
     });
     promiseDetail.then((itemDetail) => {
-      console.log(id);
       if (id) {
         const foundDetail = itemDetail.find((d) => d.id === parseInt(id));
         setDetail(foundDetail);

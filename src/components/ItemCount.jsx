@@ -54,7 +54,6 @@ function ItemCount({ stock, nombreProducto, initial, onAdd }) {
             setAddCartButton(false);
             if (productQuantity === 0) {
               setAddCartButton(true);
-              e.preventDefault();
             }
           }}
         >
