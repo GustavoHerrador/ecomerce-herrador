@@ -8,7 +8,6 @@ const { Provider } = CartContext;
 const MyProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {}, [cart]);
   //Metodo Some, que devuelve un valor booleano-item detail-
   const isInCart = (id) => {
     return cart.some((x) => x.id === id);
