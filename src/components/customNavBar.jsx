@@ -14,7 +14,7 @@ function CustomNavBar() {
         <Navbar.Brand className="brand">
           <Link to="/">
             {" "}
-            <img src={logo} className="logo" />
+            <img src={logo} className="logo" alt="pepe" />
           </Link>
           <span>Ecommerce-Herrador</span>
         </Navbar.Brand>

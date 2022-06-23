@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ItemCount.css";
+import { CartContext } from "../Context/CartContext";
+import { useContext } from "react";
 
 function ItemCount({ stock, nombreProducto, initial, onAdd }) {
   const [productQuantity, setProductQuantity] = useState(initial);
   const [disableAddButton, setDisableAddButton] = useState(false);
   const [disableRemoveButton, setDisableRemoveButton] = useState(false);
   const [addCartButton, setAddCartButton] = useState(true);
+  const { isInCart, addItem } = useContext(CartContext);
 
   useEffect(() => {
     if (productQuantity >= stock) {
@@ -54,6 +57,9 @@ function ItemCount({ stock, nombreProducto, initial, onAdd }) {
             setAddCartButton(false);
             if (productQuantity === 0) {
               setAddCartButton(true);
+            } else {
+              isInCart(initial.id);
+              addItem(initial, productQuantity);
             }
           }}
         >

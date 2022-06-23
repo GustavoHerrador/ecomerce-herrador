@@ -1,19 +1,13 @@
-import React, { useContext } from "react";
-import { CartContext } from "../Context/CartContext";
 import "././ItemDetail.css";
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ detail }) {
-  const { isInCart, addItem } = useContext(CartContext);
-
   const onAdd = (nombreProducto, productQuantity, stock) => {
     if (productQuantity === 0) {
       alert("Cargue al menos un producto");
       return;
     } else if (productQuantity > stock) {
       alert("No hay stock suficiente");
-      isInCart(detail.id);
-      addItem(detail, productQuantity);
     }
   };
 

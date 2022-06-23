@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useEffect } from "react";
 
 export const CartContext = createContext();
 
@@ -7,6 +8,7 @@ const { Provider } = CartContext;
 const MyProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {}, [cart]);
   //Metodo Some, que devuelve un valor booleano-item detail-
   const isInCart = (id) => {
     return cart.some((x) => x.id === id);
@@ -26,7 +28,7 @@ const MyProvider = ({ children }) => {
       auxArray[productIndex].stock += productQuantity;
       setCart(auxArray);
     } else {
-      setCart([...cart], newDetail);
+      setCart([...cart, newDetail]);
     }
   };
 

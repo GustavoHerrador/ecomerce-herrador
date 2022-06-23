@@ -8,7 +8,7 @@ function CartWidget() {
   return (
     <>
       <Cart3 className="carrito" />
-      <div className="cartnumber"> {getItemQty} </div>
+      <div className="cartnumber"> {getItemQty()} </div>
     </>
   );
 }
