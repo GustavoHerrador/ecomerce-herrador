@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./ItemCount.css";
 import { CartContext } from "../Context/CartContext";
 import { useContext } from "react";
+import { Button } from "react-bootstrap";
 
 function ItemCount({ stock, nombreProducto, initial, onAdd, price }) {
   const [productQuantity, setProductQuantity] = useState(initial);
@@ -66,7 +67,12 @@ function ItemCount({ stock, nombreProducto, initial, onAdd, price }) {
           Agregar al carrito
         </button>
       ) : (
-        <Link to="/cart"> Finalizar la compra </Link>
+        <Button>
+          <Link to="/cart" style={{ color: "white" }}>
+            {" "}
+            Finalizar la compra{" "}
+          </Link>
+        </Button>
       )}
     </div>
   );

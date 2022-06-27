@@ -24,7 +24,6 @@ const MyProvider = ({ children }) => {
       const productIndex = cart.indexOf(findProduct);
       const auxArray = [...cart];
       auxArray[productIndex].stock += productQuantity;
-      debugger;
       setCart(auxArray);
     } else {
       setCart([...cart, newItem]);
@@ -48,7 +47,7 @@ const MyProvider = ({ children }) => {
 
   //Metodo Reduce-Cart- Retorna precio total del carrito
   const getItemPrice = () => {
-    return cart.reduce((acc, x) => (acc += x.productQuantity * x.price), 0);
+    return cart.reduce((acc, x) => (acc += x.price * x.productQuantity), 0);
   };
 
   return (

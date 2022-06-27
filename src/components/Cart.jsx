@@ -2,21 +2,15 @@ import React from "react";
 import { useContext } from "react";
 import { CartContext } from "../Context/CartContext";
 import { Link } from "react-router-dom";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { VscTrash } from "react-icons/vsc";
 
 function Cart() {
-  const { deleteItem, getItemPrice, emptyCart, cart, addItem, getItemQty } =
+  const { deleteItem, getItemPrice, emptyCart, cart, getItemQty } =
     useContext(CartContext);
   return (
     <>
-      <Table
-        striped
-        bordered
-        hover
-        variant="blue
-      "
-      >
-        {cart.length > 0 && <div></div>}
+      <Table striped bordered hover variant="light">
         <thead>
           <tr>
             <th>ID</th>
@@ -26,13 +20,38 @@ function Cart() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>{cart.nombreProducto}</td>
-            <td>{getItemQty()}</td>
-            <td>{getItemPrice()}</td>
-          </tr>
+          {cart.map((item, index) => (
+            <tr key={index}>
+              <td>{item.id}</td>
+              <td>{item.nombreProducto}</td>
+              <td>{getItemQty()}</td>
+              <td>${getItemPrice()}</td>
+            </tr>
+          ))}
         </tbody>
+        {cart.length > 0 ? (
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteItem();
+            }}
+          >
+            {" "}
+            <VscTrash>X</VscTrash>{" "}
+          </Button>
+        ) : (
+          <Button
+            variant="info"
+            onClick={() => {
+              emptyCart();
+            }}
+          >
+            <Link to="/" style={{ color: "black" }}>
+              Volver a comprar
+            </Link>
+          </Button>
+        )}
+        <Button variant="success">Finalizar la compra</Button>
       </Table>
     </>
   );

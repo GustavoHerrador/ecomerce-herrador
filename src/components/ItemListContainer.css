@@ -1,4 +1,6 @@
 .saludo {
+  display: flex;
+  flex-direction: wrap;
   font-family: Inconsolata, monospace;
   margin-top: 40px;
   color: blue;
