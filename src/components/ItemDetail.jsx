@@ -20,6 +20,7 @@ function ItemDetail({ detail }) {
           className="card-img-top"
         />
         <ItemCount
+          id={detail.id}
           nombreProducto={detail.nombreProducto}
           stock={4}
           initial={1}

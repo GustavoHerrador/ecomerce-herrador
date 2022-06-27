@@ -5,6 +5,8 @@ import "./CartWidget.css";
 
 function CartWidget() {
   const { getItemQty } = useContext(CartContext);
+  if (getItemQty() === 0) {
+  }
   return (
     <>
       <Cart3 className="carrito" />

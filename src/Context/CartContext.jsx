@@ -13,10 +13,12 @@ const MyProvider = ({ children }) => {
   };
 
   //ItemDetail
-  const addItem = (item, productQuantity) => {
+  const addItem = (id, nombreProducto, productQuantity, price) => {
     const newItem = {
-      ...item,
-      productQuantity,
+      id: id,
+      nombreProducto: nombreProducto,
+      productQuantity: productQuantity,
+      price: price,
     };
 
     if (isInCart(newItem.id)) {

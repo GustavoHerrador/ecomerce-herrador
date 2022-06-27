@@ -6,8 +6,7 @@ import { Table, Button } from "react-bootstrap";
 import { VscTrash } from "react-icons/vsc";
 
 function Cart() {
-  const { deleteItem, getItemPrice, emptyCart, cart, getItemQty } =
-    useContext(CartContext);
+  const { deleteItem, getItemPrice, emptyCart, cart } = useContext(CartContext);
   return (
     <>
       <Table striped bordered hover variant="light">
@@ -16,7 +15,8 @@ function Cart() {
             <th>ID</th>
             <th>Producto</th>
             <th>Cantidad</th>
-            <th>Total</th>
+            <th>Precio unitario</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -24,33 +24,38 @@ function Cart() {
             <tr key={index}>
               <td>{item.id}</td>
               <td>{item.nombreProducto}</td>
-              <td>{getItemQty()}</td>
-              <td>${getItemPrice()}</td>
+              <td>{item.productQuantity}</td>
+              <td>${item.price}</td>
+              <td>
+                {cart.length > 0 ? (
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      deleteItem(item.id);
+                    }}
+                  >
+                    {" "}
+                    <VscTrash>X</VscTrash>{" "}
+                  </Button>
+                ) : (
+                  <></>
+                )}
+              </td>
             </tr>
           ))}
+          <h1>Precio Total: ${getItemPrice()}</h1>
         </tbody>
-        {cart.length > 0 ? (
-          <Button
-            variant="danger"
-            onClick={() => {
-              deleteItem();
-            }}
-          >
-            {" "}
-            <VscTrash>X</VscTrash>{" "}
-          </Button>
-        ) : (
-          <Button
-            variant="info"
-            onClick={() => {
-              emptyCart();
-            }}
-          >
-            <Link to="/" style={{ color: "black" }}>
-              Volver a comprar
-            </Link>
-          </Button>
-        )}
+
+        <Button
+          variant="info"
+          onClick={() => {
+            emptyCart();
+          }}
+        >
+          <Link to="/" style={{ color: "black" }}>
+            Volver a comprar
+          </Link>
+        </Button>
         <Button variant="success">Finalizar la compra</Button>
       </Table>
     </>
