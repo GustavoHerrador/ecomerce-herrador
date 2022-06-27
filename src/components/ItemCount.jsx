@@ -4,7 +4,7 @@ import "./ItemCount.css";
 import { CartContext } from "../Context/CartContext";
 import { useContext } from "react";
 
-function ItemCount({ stock, nombreProducto, initial, onAdd }) {
+function ItemCount({ stock, nombreProducto, initial, onAdd, price }) {
   const [productQuantity, setProductQuantity] = useState(initial);
   const [disableAddButton, setDisableAddButton] = useState(false);
   const [disableRemoveButton, setDisableRemoveButton] = useState(false);
@@ -59,7 +59,7 @@ function ItemCount({ stock, nombreProducto, initial, onAdd }) {
               setAddCartButton(true);
             } else {
               isInCart(initial.id);
-              addItem(initial, productQuantity);
+              addItem(initial, productQuantity, price);
             }
           }}
         >

@@ -2,7 +2,7 @@ import "././ItemDetail.css";
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ detail }) {
-  const onAdd = (nombreProducto, productQuantity, stock) => {
+  const onAdd = (productQuantity, stock) => {
     if (productQuantity === 0) {
       alert("Cargue al menos un producto");
       return;
@@ -24,9 +24,10 @@ function ItemDetail({ detail }) {
           stock={4}
           initial={1}
           onAdd={onAdd}
+          price={detail.price}
         />
         <div className="card-body">
-          <p>{detail.description}</p>
+          <p>{detail.detail}</p>
           <h3>Valor: ${detail.price}</h3>
           <p>stock: {detail.stock}</p>
         </div>

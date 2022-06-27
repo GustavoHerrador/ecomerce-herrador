@@ -12,7 +12,6 @@ function Item(item) {
         </Link>
         <h2>Id del producto: {item && item.id}</h2>
         <h3>Precio por unidad: {item && item.price}</h3>
-        <h4>Acerca del producto :</h4> <p>{item && item.des}</p>
       </div>
     </div>
   );

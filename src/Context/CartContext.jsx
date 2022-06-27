@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import { useEffect } from "react";
 
 export const CartContext = createContext();
 
@@ -8,26 +7,27 @@ const { Provider } = CartContext;
 const MyProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  //Metodo Some, que devuelve un valor booleano-item detail-
+  //Metodo Some, que devuelve un valor booleano-item item-
   const isInCart = (id) => {
     return cart.some((x) => x.id === id);
   };
 
   //ItemDetail
-  const addItem = (detail, productQuantity) => {
-    const newDetail = {
-      ...detail,
+  const addItem = (item, productQuantity) => {
+    const newItem = {
+      ...item,
       productQuantity,
     };
 
-    if (isInCart(newDetail.id)) {
-      const findProduct = cart.find((x) => x.id === newDetail.id);
+    if (isInCart(newItem.id)) {
+      const findProduct = cart.find((x) => x.id === newItem.id);
       const productIndex = cart.indexOf(findProduct);
       const auxArray = [...cart];
       auxArray[productIndex].stock += productQuantity;
+      debugger;
       setCart(auxArray);
     } else {
-      setCart([...cart, newDetail]);
+      setCart([...cart, newItem]);
     }
   };
 
@@ -48,7 +48,7 @@ const MyProvider = ({ children }) => {
 
   //Metodo Reduce-Cart- Retorna precio total del carrito
   const getItemPrice = () => {
-    return cart.reduce((acc, x) => (acc += x.productQuantity * x.price));
+    return cart.reduce((acc, x) => (acc += x.productQuantity * x.price), 0);
   };
 
   return (
