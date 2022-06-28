@@ -10,9 +10,14 @@ import { useNavigate } from "react-router";
 function Cart() {
   const { deleteItem, getItemPrice, emptyCart, cart } = useContext(CartContext);
   let navigate = useNavigate();
+
   const handleClik = () => {
     if (cart.length === 0) {
-      swal("No hay productos en el carrito");
+      swal(
+        "No hay productos en el carrito",
+        "cargue al menos un producto",
+        "error"
+      );
       navigate("/");
     }
   };
