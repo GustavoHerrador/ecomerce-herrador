@@ -23,26 +23,27 @@ export default function CheckOut() {
       buyer: { name, email, phone },
       items: cart,
       total: getItemPrice(),
+      date: new Date(),
     };
-    if (cart >= 0) {
-      alert("No hay productos en el carrito");
-      setDisabledButton(true);
-    } else {
-      setDisabledButton(false);
-    }
-    if (name === "" || email === "" || phone === "" || cart === 0) {
-      swal("Ocurrio un error", "Todos los campos son obligatorios");
-    } else {
-      swal({
-        title: "La compra fue un exito",
-        text: "Toca el boton para seguir comprando",
-        icon: "success",
-        button: "Continuar",
-      });
-      navigate("/");
-    }
+    console.log(ticket);
     addDoc(ticketCollection, ticket).then(({ nombreProducto, id }) => {
-      console.log(name, id);
+      if (cart >= 0) {
+        alert("No hay productos en el carrito");
+        setDisabledButton(true);
+      } else {
+        setDisabledButton(false);
+      }
+      if (name === "" || email === "" || phone === "" || cart === 0) {
+        swal("Ocurrio un error", "Todos los campos son obligatorios", "error");
+      } else {
+        swal({
+          title: "La comprara se ha realizado con exito",
+          text: id,
+          icon: "success",
+          button: "Continuar",
+        });
+        navigate("/");
+      }
     });
   };
 
