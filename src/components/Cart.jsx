@@ -4,9 +4,18 @@ import { CartContext } from "../Context/CartContext";
 import { Link } from "react-router-dom";
 import { Table, Button } from "react-bootstrap";
 import { VscTrash } from "react-icons/vsc";
+import swal from "sweetalert";
+import { useNavigate } from "react-router";
 
 function Cart() {
   const { deleteItem, getItemPrice, emptyCart, cart } = useContext(CartContext);
+  let navigate = useNavigate();
+  const handleClik = () => {
+    if (cart.length === 0) {
+      swal("No hay productos en el carrito");
+      navigate("/");
+    }
+  };
   return (
     <>
       <Table striped bordered hover variant="light">
@@ -56,7 +65,7 @@ function Cart() {
             Volver a comprar
           </Link>
         </Button>
-        <Button variant="success">
+        <Button variant="success" onClick={handleClik}>
           <Link to="/checkout" style={{ color: "white" }}>
             Finalizar la compra
           </Link>{" "}

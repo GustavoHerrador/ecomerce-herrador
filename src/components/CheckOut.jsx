@@ -30,8 +30,8 @@ export default function CheckOut() {
     } else {
       setDisabledButton(false);
     }
-    if (name === "" || email === "" || phone === "") {
-      alert("Todos los campos son obligatorios");
+    if (name === "" || email === "" || phone === "" || cart === 0) {
+      swal("Ocurrio un error", "Todos los campos son obligatorios");
     } else {
       swal({
         title: "La compra fue un exito",
