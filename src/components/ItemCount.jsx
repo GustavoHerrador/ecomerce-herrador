@@ -5,17 +5,9 @@ import { CartContext } from "../Context/CartContext";
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
 
-function ItemCount({
-  id,
-  pictureUrl,
-  stock,
-  nombreProducto,
-  initial,
-  onAdd,
-  price,
-}) {
+function ItemCount({ id, stock, nombreProducto, initial, onAdd, price }) {
   const [productQuantity, setProductQuantity] = useState(initial);
-  const [disableAddButton, setDisableAddButton] = useState(false);
+  const [disableAddButton, setDisableAddButton] = useState(true);
   const [disableRemoveButton, setDisableRemoveButton] = useState(false);
   const [addCartButton, setAddCartButton] = useState(true);
   const { isInCart, addItem } = useContext(CartContext);

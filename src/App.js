@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import MyProvider from "./Context/CartContext";
 import { initializeApp } from "firebase/app";
+import CheckOut from "./components/CheckOut";
 
 function App() {
   const firebaseConfig = {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/category/:id" element={<ItemListContainer />} />
             <Route path="item/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<CheckOut />} />
           </Routes>
         </MyProvider>
       </BrowserRouter>

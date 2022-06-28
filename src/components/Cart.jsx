@@ -56,7 +56,11 @@ function Cart() {
             Volver a comprar
           </Link>
         </Button>
-        <Button variant="success">Finalizar la compra</Button>
+        <Button variant="success">
+          <Link to="/checkout" style={{ color: "white" }}>
+            Finalizar la compra
+          </Link>{" "}
+        </Button>
       </Table>
     </>
   );
