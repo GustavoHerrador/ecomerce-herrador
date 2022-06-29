@@ -13,6 +13,7 @@ export default function CheckOut() {
   const [phone, setPhone] = useState("");
   const [disabledButton, setDisabledButton] = useState(false);
   const { cart, getItemPrice } = useContext(CartContext);
+
   let navigate = useNavigate();
 
   const db = getFirestore();
@@ -25,7 +26,7 @@ export default function CheckOut() {
       total: getItemPrice(),
       date: new Date(),
     };
-    console.log(ticket);
+
     addDoc(ticketCollection, ticket).then(({ nombreProducto, id }) => {
       if (cart >= 0) {
         alert("No hay productos en el carrito");

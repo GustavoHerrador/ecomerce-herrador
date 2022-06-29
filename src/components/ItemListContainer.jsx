@@ -50,8 +50,6 @@ const ItemListContainer = ({ saludo }) => {
 
   return (
     <>
-      <h1 className="saludo"> {saludo}</h1>
-
       <ItemList items={items} />
     </>
   );
