@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Item.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 function Item(item) {
   return (
@@ -9,7 +9,7 @@ function Item(item) {
       <Col className="container h-100 ">
         <Link
           to={`/item/${item.id}`}
-          className="btn btn-outline-secondary btn-lg btn-block col-md-12 space-around margin-right-5px"
+          className="btn btn-outline-secondary btn-lg btn-block col-md-12 space-around margin-right"
         >
           <Col style={{ color: "white" }}>{item && item.name}</Col>
           <img
@@ -18,8 +18,7 @@ function Item(item) {
             alt="..."
           />
 
-          <Col className="precio">Precio por unidad: {item && item.price}</Col>
-          <Col className="id">Id del producto: {item && item.id}</Col>
+          <Col className="precio">Precio por unidad: ${item && item.price}</Col>
         </Link>
       </Col>
     </>
