@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import React from "react";
 import CustomNavbar from "./components/customNavBar";
@@ -9,6 +8,7 @@ import Cart from "./components/Cart";
 import MyProvider from "./Context/CartContext";
 import { initializeApp } from "firebase/app";
 import CheckOut from "./components/CheckOut";
+import Login from "./components/Login";
 
 function App() {
   const firebaseConfig = {
@@ -29,7 +29,8 @@ function App() {
           <MyProvider>
             <CustomNavbar />
             <Routes>
-              <Route path="/" element={<ItemListContainer />} />
+              <Route path="/" element={<Login />} />
+              <Route path="/main" element={<ItemListContainer />} />
               <Route path="/category/:id" element={<ItemListContainer />} />
               <Route path="item/:id" element={<ItemDetailContainer />} />
               <Route path="/cart" element={<Cart />} />
