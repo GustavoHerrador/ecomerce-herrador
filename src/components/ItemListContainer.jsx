@@ -9,6 +9,8 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import swual from "sweetalert";
 
 const ItemListContainer = ({ saludo }) => {
   const { id } = useParams();
@@ -16,6 +18,7 @@ const ItemListContainer = ({ saludo }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  let Navigate = useNavigate();
 
   useEffect(() => {
     const db = getFirestore();
@@ -54,4 +57,5 @@ const ItemListContainer = ({ saludo }) => {
     </>
   );
 };
+
 export default ItemListContainer;

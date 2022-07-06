@@ -1,93 +1,84 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { Fragment, FormEventHandler } from "react";
+import { useState } from "react";
+import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import "./Login.css";
+import swal from "sweetalert";
 
-function Login() {
-  let navigate = useNavigate();
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+const Login = () => {
+  const [values, setValues] = useState({});
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1",
-    },
-    {
-      username: "user2",
-      password: "pass2",
-    },
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
+  const onFormChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setValues({ ...values, [name]: value });
   };
+  let navigate = useNavigate();
+  const postToLogin = () => {
+    fetch("http://localhost:3001/auth/login", {
+      method: "POST",
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
 
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
+        localStorage.setItem("jwt_access_token", data.jwt_access_token);
 
-    var { uname, pass } = document.forms[0];
+        console.log(localStorage.getItem("jwt_access_token"));
+        swal("Bienvenido", "", "success");
 
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+        navigate("/item-list");
+      });
+    if (lolalStorqge.setItem("jwt_access_token")) {
+      navigate("/item-list");
+    }
+    {
+      swal("Error", data.message, "error");
     }
   };
 
-  // Generate JSX code for error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  // JSX code for login form
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
+  const submitHandler = (e) => {
+    e.preventDefault();
+    e.persist();
+    postToLogin();
+  };
 
   return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title">Sign In</div>
+    <>
+      <Fragment>
+        <h1>Acercate a conocernos, te esperamos!</h1>
 
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-        {navigate("/main")}
-      </div>
-    </div>
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="formGridEmail">
+            <Form.Label>Usuario </Form.Label>
+            <Form.Control
+              name="username"
+              onChange={onFormChange}
+              placeholder="Ingrese su usuario"
+              type="text"
+              required="required"
+            />
+          </Form.Group>
+          <Form.Group controlId="formGridPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              name="password"
+              onChange={onFormChange}
+              placeholder="Ingrese su contraseña"
+              type="password"
+              required={true}
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" icon="arrow-circle-right">
+            Submit
+          </Button>
+        </Form>
+      </Fragment>
+    </>
   );
-}
+};
 
 export default Login;
