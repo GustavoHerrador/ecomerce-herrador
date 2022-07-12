@@ -6,6 +6,7 @@ import { Nav } from "react-bootstrap";
 import { NavDropdown } from "react-bootstrap";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 function CustomNavBar() {
   return (
@@ -51,6 +52,7 @@ function CustomNavBar() {
             <Nav.Link href="contactos"> Contactanos</Nav.Link>
           </Nav>
           <CartWidget />
+          <Logout />
         </Navbar>
       </div>
     </>

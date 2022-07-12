@@ -1,10 +1,10 @@
-import React, { Fragment, FormEventHandler } from 'react';
-import { useState } from 'react';
-import { Form } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { useState } from "react";
+import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 const Login = () => {
   const [values, setValues] = useState({});
@@ -16,20 +16,20 @@ const Login = () => {
   };
   let navigate = useNavigate();
   const postToLogin = () => {
-    fetch('http://192.168.1.41:8080/auth/login', {
-      method: 'POST',
+    fetch("http://192.168.1.41:8080/auth/login", {
+      method: "POST",
       body: JSON.stringify(values),
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem('jwt_access_token', data.jwt_access_token);
+        localStorage.setItem("jwt_access_token", data.jwt_access_token);
 
-        swal('Bienvenido', '', 'success');
+        swal("Bienvenido", "", "success");
 
-        navigate('/item-list');
+        navigate("/item-list");
       });
-    if (localStorage.setItem('jwt_access_token')) {
-      navigate('/item-list');
+    if (localStorage.setItem("jwt_access_token")) {
+      navigate("/item-list");
     }
   };
 
@@ -45,28 +45,28 @@ const Login = () => {
         <h1>Acercate a conocernos, te esperamos!</h1>
 
         <Form onSubmit={submitHandler}>
-          <Form.Group controlId='formGridEmail'>
+          <Form.Group controlId="formGridEmail">
             <Form.Label>Usuario </Form.Label>
             <Form.Control
-              name='username'
+              name="username"
               onChange={onFormChange}
-              placeholder='Ingrese su usuario'
-              type='text'
-              required='required'
+              placeholder="Ingrese su usuario"
+              type="text"
+              required="required"
             />
           </Form.Group>
-          <Form.Group controlId='formGridPassword'>
+          <Form.Group controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              name='password'
+              name="password"
               onChange={onFormChange}
-              placeholder='Ingrese su contraseña'
-              type='password'
+              placeholder="Ingrese su contraseña"
+              type="password"
               required={true}
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit' icon='arrow-circle-right'>
+          <Button variant="primary" type="submit" icon="arrow-circle-right">
             Submit
           </Button>
         </Form>
