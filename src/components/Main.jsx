@@ -8,7 +8,6 @@ export default function Main() {
 
   useEffect(() => {
     if (!localStorage.getItem('jwt_access_token')) {
-      console.log('prueba2');
       navigate('/login');
     } else {
       navigate('/item-list');

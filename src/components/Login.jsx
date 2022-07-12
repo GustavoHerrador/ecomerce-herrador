@@ -22,11 +22,8 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('data', data);
-
         localStorage.setItem('jwt_access_token', data.jwt_access_token);
 
-        console.log(localStorage.getItem('jwt_access_token'));
         swal('Bienvenido', '', 'success');
 
         navigate('/item-list');
