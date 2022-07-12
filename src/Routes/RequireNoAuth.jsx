@@ -1,12 +1,16 @@
-import React from "react";
-import swal from "sweetalert";
-import { Navigate } from "react-router-dom";
+import React from 'react';
+import swal from 'sweetalert';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RequireNoAuth({ children }) {
-  if (!localStorage.getItem("jwt_access_token")) {
+  let navigate = useNavigate();
+
+  useEffect(() => {}, []);
+  if (!localStorage.getItem('jwt_access_token')) {
     return children;
   } else {
-    swal("Ya esta logueado", "", "warning");
-    return <Navigate to="/item-list" />;
+    swal('Ya estas logueado', '', 'warning');
+    navigate('/item-list');
   }
 }
